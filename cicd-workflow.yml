@@ -1,3 +1,6 @@
+# docker actions cicd file
+# This file is used to build docker image and push to docker hub
+
 name: CICD
 on:
   push:
@@ -9,6 +12,19 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v3
       - name: Login to docker hub
-        run: docker login -u username -p password
-        
-        
+        run: docker login -u ${{secrets.DOCKER_HUB_USERNAME}} -p ${{secrets.DOCKER_HUB_PASSWORD}}
+      - name: Build docker image
+        run: docker build -t integrationgo/nodejs-app .
+      - name: Publish image to docker to docker hub
+        run: docker push integrationgo/nodejs-app:latest
+
+  deploy:
+    needs: build
+    runs-on: tut-aws-node-github-actions-1-runner
+    steps:
+      - name: Pull image from Docker hub
+        run: docker pull integrationgo/nodejs-app:latest
+      - name: delete old docker container
+        run: docker rm -f nodejs-app-container
+      - name: Run docker container
+        run: docker run -d -p 4472:4472 -name nodejs-app-container integrationgo/nodejs-app

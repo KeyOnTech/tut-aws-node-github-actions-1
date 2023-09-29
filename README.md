@@ -24,3 +24,20 @@ npm i express
 git init
 package add type=module
 
+
+**GitHub settings**
+open repository
+click settings
+secrets and variables
+actions
+new repository secret
+
+
+aws setup fromg github
+settings
+actions
+runners
+new self runner
+
+
+tut-aws-node-github-actions-1-runner
