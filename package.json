@@ -1,0 +1,16 @@
+{
+  "name": "tut-aws-node-github-actions-1",
+  "version": "1.0.0",
+  "description": "**Goal** create a local node project create a github project create an AWS web page configure AWS web page send local nodejs code to AWS server deploy using github actions",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
